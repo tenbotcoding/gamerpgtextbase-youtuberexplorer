@@ -1,8 +1,8 @@
 # Gamerpgtextbase-youtuberexplorer
-# Text-Based RPG: Hotel Tenggelam yang Terbengkalai
+# Permainan RPG Berbasis Teks: Hotel Grand Bali yang Terbengkalai
 
-## Synopsis
-Kamu adalah **Luna**, seorang youtuber explorer dengan 100k subscriber yang sedang membuat video investigasi tentang Hotel Grand Bali yang terbengkalai selama 10 tahun. Hotel ini terkenal dengan kisah misteri: pada malam Tahun Baru 2016, seluruh staf dan tamu hotel menghilang tanpa jejak.
+## Sinopsis
+Kamu adalah **Luna**, seorang youtuber eksplorer dengan 100 ribu subscriber yang sedang membuat video investigasi tentang Hotel Grand Bali yang terbengkalai selama 10 tahun. Hotel ini terkenal dengan kisah misteri: pada malam Tahun Baru 2016, seluruh staf dan tamu hotel menghilang tanpa jejak.
 
 Saat memasuki hotel, kamu menemukan:
 1.  Kamera lama yang masih hidup, dengan rekaman terakhir staf hotel yang panik
@@ -36,6 +36,7 @@ Makhluk halus muncul dan menyerangmu, kamu harus menggunakan barang-barang yang 
 - 🔍 Teka-teki investigasi yang menantang
 - 🎵 Suara ambien yang menegangkan untuk menambah suasana misteri
 - 📱 Dapat dimainkan secara offline tanpa koneksi internet
+- 🗣️ Semua teks dalam game menggunakan Bahasa Indonesia agar mudah dinikmati oleh kalangan muda
 
 ---
 ## Cara Menjalankan
