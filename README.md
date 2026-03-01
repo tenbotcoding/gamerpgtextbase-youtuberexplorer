@@ -6,6 +6,10 @@ Proyek text-based RPG game untuk YouTube Explorer.
 
 Ini adalah proyek game RPG berbasis teks yang dibuat untuk konten YouTube.
 
+## Test Push Berhasil ✅
+
+Ini adalah perubahan test untuk memverifikasi bahwa push ke GitHub berfungsi.
+
 ## Cara Menjalankan
 
 1.  Clone repositori ini
