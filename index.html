@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Grand Bali Terbengkalai - RPG Teks</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <!-- Header Game -->
+        <header class="game-header">
+            <h1>🏨 Hotel Grand Bali Terbengkalai</h1>
+            <div class="game-stats">
+                <span id="current-quest">Quest: Belum Memulai Permainan</span>
+                <span id="game-time">Waktu: 00:00</span>
+            </div>
+        </header>
+
+        <!-- Area Konten Utama -->
+        <main class="game-content">
+            <div id="story-text" class="story-text">
+                Selamat datang di Hotel Grand Bali Terbengkalai! Tekan tombol Mulai Permainan untuk memulai petunjukmu.
+            </div>
+
+            <!-- Area Pilihan -->
+            <div id="choices-area" class="choices-area">
+                <button id="start-btn" class="choice-btn">Mulai Permainan</button>
+            </div>
+
+            <!-- Area Inventory -->
+            <div class="inventory-area">
+                <h3>🎒 Inventory</h3>
+                <ul id="inventory-list"></ul>
+            </div>
+
+            <!-- Area Quest Log -->
+            <div class="quest-log-area">
+                <h3>📜 Quest Log</h3>
+                <ul id="quest-log"></ul>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="game-footer">
+            <button id="save-btn">💾 Simpan Permainan</button>
+            <button id="load-btn">📂 Muat Permainan</button>
+            <button id="reset-btn">🔄 Reset Permainan</button>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
