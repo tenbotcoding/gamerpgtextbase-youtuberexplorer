@@ -39,6 +39,14 @@ Makhluk halus muncul dan menyerangmu, kamu harus menggunakan barang-barang yang 
 - 🗣️ Semua teks dalam game menggunakan Bahasa Indonesia agar mudah dinikmati oleh kalangan muda
 
 ---
+## ✨ Fitur Baru yang Ditambahkan
+- 💾 **Sistem Penyimpanan Permainan**: Simpan progres permainan dan lanjutkan kapan saja
+- 🧑🤝🧑 **Kustomisasi Karakter**: Pilih nama, penampilan, dan keterampilan karaktermu
+- 🔄 **Lebih dari 2 Akhir Permainan**: Tambahkan akhir rahasia dan akhir netral untuk meningkatkan replay value
+- 📜 **Sistem Log Quest**: Lacak semua quest aktif dan objective yang perlu diselesaikan
+- 🎒 **Sistem Item Interaktif**: Gunakan item yang ditemukan di hotel untuk memecahkan teka-teki
+
+---
 ## 🎯 Quest Harian Otomatis Setiap Jam
 Setiap jam pukul 00 menit WIB, script akan secara otomatis:
 1.  Memilih quest acak unik dari library quest yang ada
