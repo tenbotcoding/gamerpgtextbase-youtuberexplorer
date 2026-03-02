@@ -39,6 +39,13 @@ Makhluk halus muncul dan menyerangmu, kamu harus menggunakan barang-barang yang 
 - 🗣️ Semua teks dalam game menggunakan Bahasa Indonesia agar mudah dinikmati oleh kalangan muda
 
 ---
+## 🎯 Quest Harian Otomatis Setiap Jam
+Setiap jam pukul 00 menit WIB, script akan secara otomatis:
+1.  Memilih quest acak unik dari library quest yang ada
+2.  Menambahkan detail quest baru ke dokumentasi permainan di README.md
+3.  Menyimpan perubahan dan mendorongnya ke repositori GitHub secara otomatis
+
+---
 ## Cara Menjalankan
 1.  Clone repositori ini
 2.  Buka file `index.html` di browser apapun
