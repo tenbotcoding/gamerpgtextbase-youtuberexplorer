@@ -56,8 +56,16 @@ Setiap jam pukul 00 menit WIB, script akan secara otomatis:
 ---
 ## Cara Menjalankan
 1.  Clone repositori ini
-2.  Buka file `index.html` di browser apapun
+2.  Buka file `index.html` di browser apapun (tidak membutuhkan koneksi internet!)
 3.  Mulai permainan dan nikmati alur cerita!
+
+## Fitur Baru yang Baru Ditambahkan
+- 🎨 Antarmuka UI yang menarik dengan tema hotel terbengkalai
+- 📱 Responsif untuk semua ukuran layar (hp, tablet, desktop)
+- 💾 Sistem penyimpanan permainan otomatis dan manual
+- 🎒 Inventory sistem untuk menyimpan barang yang ditemukan
+- 📜 Quest log untuk melacak semua objective permainan
+- 🔊 Suara ambien yang menegangkan (akan ditambahkan di update selanjutnya)
 
 ---
 ## Kontribusi
