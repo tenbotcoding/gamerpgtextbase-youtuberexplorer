@@ -40,32 +40,41 @@ Makhluk halus muncul dan menyerangmu, kamu harus menggunakan barang-barang yang 
 
 ---
 ## ✨ Fitur Baru yang Ditambahkan
-- 💾 **Sistem Penyimpanan Permainan**: Simpan progres permainan dan lanjutkan kapan saja
-- 🧑🤝🧑 **Kustomisasi Karakter**: Pilih nama, penampilan, dan keterampilan karaktermu
-- 🔄 **Lebih dari 2 Akhir Permainan**: Tambahkan akhir rahasia dan akhir netral untuk meningkatkan replay value
+### 🎮 Fitur Utama:
+- 📖 Alur cerita yang naik turun dengan twist mengejutkan
+- 🎯 Pilihan yang mempengaruhi akhir permainan dan tingkat stress
+- 🔍 Teka-teki investigasi yang menantang
+- 🎵 Suara ambien yang menegangkan untuk menambah suasana misteri
+- 📱 Dapat dimainkan secara offline tanpa koneksi internet
+- 🗣️ Semua teks dalam game menggunakan Bahasa Indonesia agar mudah dinikmati
+
+### ✨ Fitur Baru Terbaru:
+- 🎭 **Kustomisasi Karakter**: Pilih nama, latar belakang, dan barang bawaan awal karaktermu
+- ❤️ **Sistem Kesehatan & Stress**: Metrik permainan yang berubah berdasarkan peristiwa dalam game
+- 💡 **Sistem Petunjuk**: Gunakan buku catatan untuk mendapatkan petunjuk acak tentang permainan
+- 🔊 **Kontrol Suara**: Nyalakan/matikan suara latar hotel kapan saja
+- 🧑🤝🧑 **Sistem Inventory Lengkap**: Simpan dan gunakan item yang ditemukan di hotel
 - 📜 **Sistem Log Quest**: Lacak semua quest aktif dan objective yang perlu diselesaikan
-- 🎒 **Sistem Item Interaktif**: Gunakan item yang ditemukan di hotel untuk memecahkan teka-teki
+- 💾 **Sistem Penyimpanan Permainan**: Simpan progres permainan dan lanjutkan kapan saja
+- 🔄 **Lebih dari 2 Akhir Permainan**: Tambahkan akhir rahasia dan akhir netral untuk meningkatkan replay value
 
 ---
 ## 🎯 Quest Harian Otomatis Setiap Jam
-Setiap jam pukul 00 menit WIB, script akan secara otomatis:
-1.  Memilih quest acak unik dari library quest yang ada
-2.  Menambahkan detail quest baru ke dokumentasi permainan di README.md
-3.  Menyimpan perubahan dan mendorongnya ke repositori GitHub secara otomatis
+*(Fitur yang sudah tidak aktif di versi terbaru)*
 
 ---
 ## Cara Menjalankan
 1.  Clone repositori ini
 2.  Buka file `index.html` di browser apapun (tidak membutuhkan koneksi internet!)
-3.  Mulai permainan dan nikmati alur cerita!
+3.  Tekan tombol "Mulai Permainan" dan nikmati alur cerita!
 
-## Fitur Baru yang Baru Ditambahkan
-- 🎨 Antarmuka UI yang menarik dengan tema hotel terbengkalai
-- 📱 Responsif untuk semua ukuran layar (hp, tablet, desktop)
-- 💾 Sistem penyimpanan permainan otomatis dan manual
-- 🎒 Inventory sistem untuk menyimpan barang yang ditemukan
-- 📜 Quest log untuk melacak semua objective permainan
-- 🔊 Suara ambien yang menegangkan (akan ditambahkan di update selanjutnya)
+---
+## Cara Bermain
+1.  Pilih opsi kustomisasi karakter untuk menyesuaikan nama dan latar belakangmu
+2.  Jelajahi hotel dan temukan petunjuk misteri
+3.  Gunakan item yang kamu temukan untuk memecahkan teka-teki
+4.  Kelola tingkat stress dan kesehatan karaktermu
+5.  Cari cara untuk mengakhiri ritual gelap yang mengunci semua jiwa di hotel
 
 ---
 ## Kontribusi
