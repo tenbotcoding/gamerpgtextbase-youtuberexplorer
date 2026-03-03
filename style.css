@@ -10,10 +10,8 @@ body {
     background: #1a1a2e;
     color: #e94560;
     line-height: 1.6;
-    background-image: url('assets/background-hotel.jpg');
-    background-size: cover;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
     background-attachment: fixed;
-    background-blend-mode: overlay;
 }
 
 /* Game Container */
@@ -140,6 +138,114 @@ body {
     color: #16213e;
 }
 
+/* Sound Controls */
+.sound-controls {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    z-index: 100;
+}
+
+.sound-btn {
+    padding: 0.8rem 1.2rem;
+    font-size: 1rem;
+    background: #16213e;
+    color: #e94560;
+    border: 2px solid #e94560;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sound-btn:hover {
+    background: #e94560;
+    color: #16213e;
+}
+
+/* Customization Screen */
+.customization-screen {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(26, 26, 46, 0.98);
+    border: 2px solid #e94560;
+    border-radius: 10px;
+    padding: 2rem;
+    z-index: 1000;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 0 30px rgba(233, 69, 96, 0.8);
+}
+
+.customization-screen h2 {
+    color: #e94560;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    text-shadow: 0 0 10px #e94560;
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    color: #e9e9e9;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    background: #16213e;
+    color: #e9e9e9;
+    border: 2px solid #0f3460;
+    border-radius: 5px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: #e94560;
+    box-shadow: 0 0 10px rgba(233, 69, 96, 0.5);
+}
+
+/* Game Stats Bar */
+.game-stats {
+    display: flex;
+    justify-content: space-around;
+    color: #e9e9e9;
+    font-weight: bold;
+    background: rgba(22, 33, 62, 0.8);
+    padding: 0.5rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.stat-bar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.stat-meter {
+    width: 100px;
+    height: 10px;
+    background: #16213e;
+    border: 1px solid #e94560;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.stat-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #4caf50 0%, #e94560 100%);
+    transition: width 0.3s ease;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .game-container {
@@ -154,5 +260,10 @@ body {
     .game-stats {
         flex-direction: column;
         gap: 0.5rem;
+    }
+    
+    .sound-controls {
+        top: 0.5rem;
+        right: 0.5rem;
     }
 }

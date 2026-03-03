@@ -13,6 +13,18 @@
             <h1>🏨 Hotel Grand Bali Terbengkalai</h1>
             <div class="game-stats">
                 <span id="current-quest">Quest: Belum Memulai Permainan</span>
+                <div class="stat-bar">
+                    <span>❤️</span>
+                    <div class="stat-meter">
+                        <div id="health-fill" class="stat-fill" style="width: 100%"></div>
+                    </div>
+                </div>
+                <div class="stat-bar">
+                    <span>😨</span>
+                    <div class="stat-meter">
+                        <div id="stress-fill" class="stat-fill" style="width: 0%"></div>
+                    </div>
+                </div>
                 <span id="game-time">Waktu: 00:00</span>
             </div>
         </header>
@@ -21,6 +33,32 @@
         <main class="game-content">
             <div id="story-text" class="story-text">
                 Selamat datang di Hotel Grand Bali Terbengkalai! Tekan tombol Mulai Permainan untuk memulai petunjukmu.
+            </div>
+
+            <!-- Character Customization Screen -->
+            <div id="customization-screen" class="customization-screen">
+                <h2>🎭 Kustomisasi Karakter</h2>
+                <div class="form-group">
+                    <label for="player-name">Nama Karakter:</label>
+                    <input type="text" id="player-name" value="Luna" maxlength="20">
+                </div>
+                <div class="form-group">
+                    <label for="player-backstory">Latar Belakang:</label>
+                    <select id="player-backstory">
+                        <option value="investigator">Investigateur Misteri (100k Subscriber)</option>
+                        <option value="journalist">Jurnalis Berpengalaman</option>
+                        <option value="paranormal">Peneliti Paranormal</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="starting-item">Baraw Awal:</label>
+                    <select id="starting-item">
+                        <option value="camera">Kamera Video (Rekam aktivitas paranormal)</option>
+                        <option value="flashlight">Sentuhan Besar (Melihat di tempat gelap)</option>
+                        <option value="notebook">Buku Catatan (Menyimpan petunjuk)</option>
+                    </select>
+                </div>
+                <button id="customize-start-btn" class="choice-btn">Mulai Permainan</button>
             </div>
 
             <!-- Area Pilihan -->
@@ -41,6 +79,11 @@
             </div>
         </main>
 
+        <!-- Sound Controls -->
+        <div class="sound-controls">
+            <button id="sound-toggle" class="sound-btn">🔊 Suara Nyala</button>
+        </div>
+
         <!-- Footer -->
         <footer class="game-footer">
             <button id="save-btn">💾 Simpan Permainan</button>
@@ -48,6 +91,13 @@
             <button id="reset-btn">🔄 Reset Permainan</button>
         </footer>
     </div>
+
+    <!-- Ambient Sound -->
+    <audio id="ambient-sound" loop preload="auto">
+        <source src="assets/ambient.ogg" type="audio/ogg">
+        <source src="assets/ambient.mp3" type="audio/mpeg">
+        Browser kamu tidak support elemen audio.
+    </audio>
 
     <script src="app.js"></script>
 </body>
