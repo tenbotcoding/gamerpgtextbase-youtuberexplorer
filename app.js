@@ -9,12 +9,20 @@ const gameState = {
     startingItem: "camera",
     health: 100,
     stress: 0,
+    lightLevel: 100,
+    hasFlashlight: false,
+    batteryCount: 0,
     inventory: [],
     questLog: [],
     completedQuests: new Set(),
     currentQuest: null,
     playthroughTime: 0,
-    hintsUsed: 0
+    hintsUsed: 0,
+    craftingRecipes: {
+        "Sentuhan Besar + Baterai": "Sentuhan Besar Aktif",
+        "Kamera + Baterai": "Kamera Rekaman",
+        "Obeng + Paku": "Alat Buka Kunci"
+    }
 };
 
 // DOM Elements
@@ -33,6 +41,7 @@ const soundToggleBtn = document.getElementById('sound-toggle');
 const ambientSound = document.getElementById('ambient-sound');
 const healthFill = document.getElementById('health-fill');
 const stressFill = document.getElementById('stress-fill');
+const lightFill = document.getElementById('light-fill');
 const playerNameEl = document.getElementById('player-name-display');
 
 // Sound State
@@ -81,18 +90,24 @@ function startCustomizedGame() {
     gameState.playerBackstory = document.getElementById('player-backstory').value;
     gameState.startingItem = document.getElementById('starting-item').value;
     
-    // Add starting item
+    // Add starting items based on selection
     switch(gameState.startingItem) {
         case "camera":
             gameState.inventory.push("Kamera Video");
+            gameState.inventory.push("Buku Catatan");
             break;
         case "flashlight":
             gameState.inventory.push("Sentuhan Besar");
+            gameState.inventory.push("Buku Catatan");
             break;
         case "notebook":
             gameState.inventory.push("Buku Catatan");
+            gameState.inventory.push("Obeng");
             break;
     }
+    // Add default starting items
+    gameState.inventory.push("Kunci Kamar 302");
+    gameState.inventory.push("Obeng");
     
     customizationScreen.style.display = 'none';
     startGame();
@@ -206,12 +221,49 @@ function callTeam() {
 }
 
 function checkInventory() {
-    updateStory("Kamu membuka tas kamu: kamu membawa kamera kamu, buku catatan, dan kunci kamar 302, dan sentuhan kecil, dan sebuah obeng kecil.");
+    const inventoryItems = gameState.inventory.join(", ") || "kosong";
+    updateStory(`Kamu membuka tas kamu: ${inventoryItems}.`);
     updateChoices([
-        { text: "Ambil kamera", action: () => addItem("Kamera") },
-        { text: "Ambil buku catatan", action: () => addItem("Buku Catatan Resepsionis") },
-        { text: "Ambil kunci kamar 302", action: () => addItem("Kunci Kamar 302") }
+        { text: "Gunakan Item", action: () => useSelectedItem() },
+        { text: "Crafting Item", action: () => craftItem() },
+        { text: "Kunjungi Lounge Hotel", action: () => goToLounge() },
+        { text: "Kembali", action: () => enterHotel() }
     ]);
+}
+
+// Use Selected Item
+function useSelectedItem() {
+    if (gameState.inventory.length === 0) {
+        updateStory("Tas kamu kosong!");
+        updateChoices([{ text: "Kembali", action: () => checkInventory() }]);
+        return;
+    }
+    
+    updateStory("Pilih item yang ingin digunakan:");
+    const choices = gameState.inventory.map(item => ({
+        text: item,
+        action: () => useSpecificItem(item)
+    }));
+    choices.push({ text: "Kembali", action: () => checkInventory() });
+    updateChoices(choices);
+}
+
+// Use Specific Item
+function useSpecificItem(item) {
+    if (item === "Sentuhan Besar" && gameState.inventory.includes("Baterai") && !gameState.inventory.includes("Sentuhan Besar Aktif")) {
+        updateStory("Kamu menyalakan sentuhan besar dengan baterai! Sekarang kamu bisa melihat di tempat gelap.");
+        gameState.inventory.splice(gameState.inventory.indexOf("Sentuhan Besar"), 1);
+        addItem("Sentuhan Besar Aktif");
+        gameState.lightLevel = Math.min(100, gameState.lightLevel + 50);
+    } else if (item === "Kamera" && gameState.inventory.includes("Baterai") && !gameState.inventory.includes("Kamera Rekaman")) {
+        updateStory("Kamu menyalakan kamera dengan baterai! Sekarang kamu bisa merekam aktivitas paranormal.");
+        gameState.inventory.splice(gameState.inventory.indexOf("Kamera"), 1);
+        addItem("Kamera Rekaman");
+    } else {
+        updateStory(`Kamu menggunakan ${item}, tidak ada efek khusus.`);
+    }
+    updateUI();
+    checkInventory();
 }
 
 function addItem(item) {
@@ -221,10 +273,11 @@ function addItem(item) {
     updateUI();
 }
 
-// Update Health & Stress Stats
+// Update Health & Stress & Light Stats
 function updateStats() {
     healthFill.style.width = `${gameState.health}%`;
     stressFill.style.width = `${gameState.stress}%`;
+    lightFill.style.width = `${gameState.lightLevel}%`;
     
     // Change stress fill color based on level
     if (gameState.stress > 70) {
@@ -233,6 +286,13 @@ function updateStats() {
         stressFill.style.background = 'linear-gradient(90deg, #ff9800 0%, #ffeb3b 100%)';
     } else {
         stressFill.style.background = 'linear-gradient(90deg, #4caf50 0%, #8bc34a 100%)';
+    }
+    
+    // Change light fill color based on level
+    if (gameState.lightLevel < 30) {
+        lightFill.style.background = 'linear-gradient(90deg, #e94560 0%, #ff9800 100%)';
+    } else {
+        lightFill.style.background = 'linear-gradient(90deg, #4caf50 0%, #8bc34a 100%)';
     }
 }
 
@@ -345,4 +405,91 @@ function runAway() {
     updateChoices([
         { text: "Mulai Permainan Baru", action: () => location.reload() }
     ]);
+}
+
+// Craft Item System
+function craftItem() {
+    const availableCrafts = [];
+    
+    // Check available crafting recipes
+    if (gameState.inventory.includes("Sentuhan Besar") && gameState.inventory.includes("Baterai")) {
+        availableCrafts.push("Sentuhan Besar + Baterai → Sentuhan Besar Aktif");
+    }
+    if (gameState.inventory.includes("Kamera") && gameState.inventory.includes("Baterai")) {
+        availableCrafts.push("Kamera + Baterai → Kamera Rekaman");
+    }
+    if (gameState.inventory.includes("Obeng") && gameState.inventory.includes("Paku")) {
+        availableCrafts.push("Obeng + Paku → Alat Buka Kunci");
+    }
+    
+    if (availableCrafts.length === 0) {
+        updateStory("Kamu tidak memiliki cukup item untuk membuat alat apapun!");
+    } else {
+        updateStory("📋 Resep Crafting yang Tersedia:");
+        availableCrafts.forEach(recipe => {
+            updateStory(`- ${recipe}`);
+        });
+        updateStory("Tulis nama resep yang ingin kamu buat:");
+    }
+    
+    updateChoices([
+        { text: "Kembali ke Menu Utama", action: () => enterHotel() }
+    ]);
+}
+
+// Hotel Lounge Location
+function goToLounge() {
+    gameState.lightLevel = Math.max(0, gameState.lightLevel - 20);
+    updateStats();
+    updateStory("Kamu masuk ke lounge hotel yang sudah terbengkalai. Sofa-sofa tua tertutup debu, dan ada meja kopi yang patah di tengah ruangan. Di sudut ruangan, kamu melihat sebuah kotak kayu tertutup rapat.");
+    updateChoices([
+        { text: "Periksa kotak kayu", action: () => checkLoungeBox() },
+        { text: "Cari di sofa untuk menemukan barang", action: () => searchLoungeSofa() },
+        { text: "Kembali ke Aula Utama", action: () => enterHotel() }
+    ]);
+}
+
+// Check Lounge Box
+function checkLoungeBox() {
+    updateStory("Kamu membuka kotak kayu, di dalamnya ada Baterai dan Paku!");
+    addItem("Baterai");
+    addItem("Paku");
+    updateChoices([
+        { text: "Kembali ke Lounge", action: () => goToLounge() }
+    ]);
+}
+
+// Search Lounge Sofa
+function searchLoungeSofa() {
+    if (Math.random() > 0.5) {
+        updateStory("Kamu mencari di sofa dan menemukan beberapa uang logam dan sebuah buku saku!");
+        addItem("Uang Logam");
+        addItem("Buku Saku");
+    } else {
+        updateStory("Kamu mencari di sofa tapi tidak menemukan apa-apa selain debu.");
+    }
+    updateChoices([
+        { text: "Kembali ke Lounge", action: () => goToLounge() }
+    ]);
+}
+
+// Update Light Level Over Time
+function updateLightLoop() {
+    if (gameState.isPlaying && gameState.currentScene !== "start") {
+        gameState.lightLevel = Math.max(0, gameState.lightLevel - 1);
+        updateStats();
+        
+        // Trigger jumpscare if light is very low
+        if (gameState.lightLevel < 20 && Math.random() > 0.9) {
+            randomJumpscare();
+        }
+    }
+    setTimeout(updateLightLoop, 10000); // Decrease light every 10 seconds
+}
+
+// Start light update loop when game starts
+const originalStartGame = startGame;
+startGame = function() {
+    originalStartGame();
+    updateLightLoop();
 }

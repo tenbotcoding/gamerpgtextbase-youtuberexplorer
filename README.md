@@ -57,6 +57,10 @@ Makhluk halus muncul dan menyerangmu, kamu harus menggunakan barang-barang yang 
 - 📜 **Sistem Log Quest**: Lacak semua quest aktif dan objective yang perlu diselesaikan
 - 💾 **Sistem Penyimpanan Permainan**: Simpan progres permainan dan lanjutkan kapan saja
 - 🔄 **Lebih dari 2 Akhir Permainan**: Tambahkan akhir rahasia dan akhir netral untuk meningkatkan replay value
+- 💡 **Sistem Pencahayaan Dinamis**: Level cahaya yang berkurang seiring waktu, butuh sentuhan/baterai untuk melihat di area gelap
+- 🛠️ **Sistem Crafting Item**: Gabungkan item untuk membuat alat baru seperti sentuhan aktif, kamera rekaman, dan alat buka kunci
+- 🍸 **Lokasi Baru: Lounge Hotel**: Jelajahi area tambahan dengan petunjuk dan item rahasia
+- 👻 **Dialog Hantu yang Lebih Interaktif**: Beberapa opsi percakapan dengan hantu resepsionis
 
 ---
 ## 🎯 Quest Harian Otomatis Setiap Jam
