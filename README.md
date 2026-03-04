@@ -49,10 +49,8 @@ Makhluk halus muncul dan menyerangmu, kamu harus menggunakan barang-barang yang 
 - 🗣️ Semua teks dalam game menggunakan Bahasa Indonesia agar mudah dinikmati
 
 ### ✨ Fitur Baru Terbaru:
-- 🎭 **Kustomisasi Karakter**: Pilih nama, latar belakang, dan barang bawaan awal karaktermu
 - ❤️ **Sistem Kesehatan & Stress**: Metrik permainan yang berubah berdasarkan peristiwa dalam game
 - 💡 **Sistem Petunjuk**: Gunakan buku catatan untuk mendapatkan petunjuk acak tentang permainan
-- 🔊 **Kontrol Suara**: Nyalakan/matikan suara latar hotel kapan saja
 - 🧑🤝🧑 **Sistem Inventory Lengkap**: Simpan dan gunakan item yang ditemukan di hotel
 - 📜 **Sistem Log Quest**: Lacak semua quest aktif dan objective yang perlu diselesaikan
 - 💾 **Sistem Penyimpanan Permainan**: Simpan progres permainan dan lanjutkan kapan saja
@@ -74,7 +72,7 @@ Makhluk halus muncul dan menyerangmu, kamu harus menggunakan barang-barang yang 
 
 ---
 ## Cara Bermain
-1.  Pilih opsi kustomisasi karakter untuk menyesuaikan nama dan latar belakangmu
+1.  Buka game dan langsung mulai petualanganmu sebagai Luna
 2.  Jelajahi hotel dan temukan petunjuk misteri
 3.  Gunakan item yang kamu temukan untuk memecahkan teka-teki
 4.  Kelola tingkat stress dan kesehatan karaktermu

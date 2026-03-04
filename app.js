@@ -5,13 +5,9 @@ const gameState = {
     isPlaying: false,
     currentScene: "start",
     playerName: "Luna",
-    playerBackstory: "investigator",
-    startingItem: "camera",
     health: 100,
     stress: 0,
     lightLevel: 100,
-    hasFlashlight: false,
-    batteryCount: 0,
     inventory: [],
     questLog: [],
     completedQuests: new Set(),
@@ -31,16 +27,12 @@ const choicesArea = document.getElementById('choices-area');
 const inventoryList = document.getElementById('inventory-list');
 const questLog = document.getElementById('quest-log');
 const currentQuestEl = document.getElementById('current-quest');
-const startBtn = document.getElementById('start-btn');
-const customizeStartBtn = document.getElementById('customize-start-btn');
-const customizationScreen = document.getElementById('customization-screen');
 const saveBtn = document.getElementById('save-btn');
 const loadBtn = document.getElementById('load-btn');
 const resetBtn = document.getElementById('reset-btn');
 const healthFill = document.getElementById('health-fill');
 const stressFill = document.getElementById('stress-fill');
 const lightFill = document.getElementById('light-fill');
-const playerNameEl = document.getElementById('player-name-display');
 
 // Load Quests from quests.txt
 let allQuests = [];
@@ -50,16 +42,20 @@ async function init() {
     // Load quests
     await loadQuests();
     
+    // Set default inventory items
+    gameState.inventory.push("Kamera Video");
+    gameState.inventory.push("Buku Catatan");
+    gameState.inventory.push("Kunci Kamar 302");
+    gameState.inventory.push("Obeng");
+    
     // Check saved game
     if (localStorage.getItem('hotelRPGSave')) {
         loadGame();
+    } else {
+        startGame();
     }
     
-    // Auto-show customization screen on page load (no start button popup)
-    showCustomizationScreen();
-    
     // Event Listeners
-    customizeStartBtn.addEventListener('click', startCustomizedGame);
     saveBtn.addEventListener('click', saveGame);
     loadBtn.addEventListener('click', loadGame);
     resetBtn.addEventListener('click', resetGame);
@@ -68,38 +64,8 @@ async function init() {
 }
 
 // Show Character Customization Screen
-function showCustomizationScreen() {
-    customizationScreen.style.display = 'block';
-}
 
 // Start Game with Customization
-function startCustomizedGame() {
-    gameState.playerName = document.getElementById('player-name').value || "Luna";
-    gameState.playerBackstory = document.getElementById('player-backstory').value;
-    gameState.startingItem = document.getElementById('starting-item').value;
-    
-    // Add starting items based on selection
-    switch(gameState.startingItem) {
-        case "camera":
-            gameState.inventory.push("Kamera Video");
-            gameState.inventory.push("Buku Catatan");
-            break;
-        case "flashlight":
-            gameState.inventory.push("Sentuhan Besar");
-            gameState.inventory.push("Buku Catatan");
-            break;
-        case "notebook":
-            gameState.inventory.push("Buku Catatan");
-            gameState.inventory.push("Obeng");
-            break;
-    }
-    // Add default starting items
-    gameState.inventory.push("Kunci Kamar 302");
-    gameState.inventory.push("Obeng");
-    
-    customizationScreen.style.display = 'none';
-    startGame();
-}
 
 // Load Quests from File
 async function loadQuests() {
