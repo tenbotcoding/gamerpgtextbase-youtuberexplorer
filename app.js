@@ -63,9 +63,7 @@ async function init() {
     updateUI();
 }
 
-// Show Character Customization Screen
 
-// Start Game with Customization
 
 // Load Quests from File
 async function loadQuests() {
