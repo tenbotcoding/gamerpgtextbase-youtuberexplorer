@@ -70,7 +70,7 @@ Makhluk halus muncul dan menyerangmu, kamu harus menggunakan barang-barang yang 
 ## Cara Menjalankan
 1.  Clone repositori ini
 2.  Buka file `index.html` di browser apapun (tidak membutuhkan koneksi internet!)
-3.  Tekan tombol "Mulai Permainan" dan nikmati alur cerita!
+3.  Sesuaikan karakter kamu dan langsung mulai bermain!
 
 ---
 ## Cara Bermain

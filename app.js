@@ -55,11 +55,10 @@ async function init() {
         loadGame();
     }
     
-    // Hide customization screen by default
-    customizationScreen.style.display = 'none';
+    // Auto-show customization screen on page load (no start button popup)
+    showCustomizationScreen();
     
     // Event Listeners
-    startBtn.addEventListener('click', showCustomizationScreen);
     customizeStartBtn.addEventListener('click', startCustomizedGame);
     saveBtn.addEventListener('click', saveGame);
     loadBtn.addEventListener('click', loadGame);
@@ -71,7 +70,6 @@ async function init() {
 // Show Character Customization Screen
 function showCustomizationScreen() {
     customizationScreen.style.display = 'block';
-    startBtn.style.display = 'none';
 }
 
 // Start Game with Customization
