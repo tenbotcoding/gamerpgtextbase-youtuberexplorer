@@ -37,15 +37,10 @@ const customizationScreen = document.getElementById('customization-screen');
 const saveBtn = document.getElementById('save-btn');
 const loadBtn = document.getElementById('load-btn');
 const resetBtn = document.getElementById('reset-btn');
-const soundToggleBtn = document.getElementById('sound-toggle');
-const ambientSound = document.getElementById('ambient-sound');
 const healthFill = document.getElementById('health-fill');
 const stressFill = document.getElementById('stress-fill');
 const lightFill = document.getElementById('light-fill');
 const playerNameEl = document.getElementById('player-name-display');
-
-// Sound State
-let isSoundOn = true;
 
 // Load Quests from quests.txt
 let allQuests = [];
@@ -69,11 +64,6 @@ async function init() {
     saveBtn.addEventListener('click', saveGame);
     loadBtn.addEventListener('click', loadGame);
     resetBtn.addEventListener('click', resetGame);
-    soundToggleBtn.addEventListener('click', toggleSound);
-    
-    // Start ambient sound
-    ambientSound.volume = 0.3;
-    ambientSound.play().catch(err => console.log('Autoplay blocked:', err));
     
     updateUI();
 }
@@ -120,7 +110,7 @@ async function loadQuests() {
         const text = await response.text();
         allQuests = text.split('\n').filter(q => q.trim() !== '');
     } catch (error) {
-        console.error('Gagal memuat quest: ", error);
+        console.error('Gagal memuat quest: ', error);
         allQuests = ["Quest: Gagal memuat library quest"];
     }
 }
@@ -379,16 +369,6 @@ function resetGame() {
 }
 
 // Toggle Sound
-function toggleSound() {
-    if (isSoundOn) {
-        ambientSound.pause();
-        soundToggleBtn.textContent = '🔇 Suara Mati';
-    } else {
-        ambientSound.play();
-        soundToggleBtn.textContent = '🔊 Suara Nyala';
-    }
-    isSoundOn = !isSoundOn;
-}
 
 // Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', init);// Random Jumpscare Event
@@ -474,22 +454,5 @@ function searchLoungeSofa() {
 }
 
 // Update Light Level Over Time
-function updateLightLoop() {
-    if (gameState.isPlaying && gameState.currentScene !== "start") {
-        gameState.lightLevel = Math.max(0, gameState.lightLevel - 1);
-        updateStats();
-        
-        // Trigger jumpscare if light is very low
-        if (gameState.lightLevel < 20 && Math.random() > 0.9) {
-            randomJumpscare();
-        }
-    }
-    setTimeout(updateLightLoop, 10000); // Decrease light every 10 seconds
-}
 
 // Start light update loop when game starts
-const originalStartGame = startGame;
-startGame = function() {
-    originalStartGame();
-    updateLightLoop();
-}
