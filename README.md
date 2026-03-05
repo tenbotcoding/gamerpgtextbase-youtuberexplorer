@@ -30,56 +30,63 @@ Makhluk halus muncul dan menyerangmu, kamu harus menggunakan barang-barang yang 
 2.  **❌ Akhir Sedih**: Kamu gagal menghancurkan altar, dan kamu terjebak di hotel selamanya, menjadi hantu lain yang menghuni lantai 3. Video kamu tidak pernah terunggah, dan subscriber kamu tidak pernah mendengar kabar darimu lagi.
 
 ---
-## Fitur Permainan
+## 🎯 Fitur Utama Permainan
 - 📖 Alur cerita yang naik turun dengan twist mengejutkan
-- 🎮 Pilihan yang mempengaruhi akhir permainan
+- 🎮 Pilihan yang mempengaruhi akhir permainan dan tingkat stress
 - 🔍 Teka-teki investigasi yang menantang
 - 🎵 Suara ambien yang menegangkan untuk menambah suasana misteri
 - 📱 Dapat dimainkan secara offline tanpa koneksi internet
 - 🗣️ Semua teks dalam game menggunakan Bahasa Indonesia agar mudah dinikmati oleh kalangan muda
 
 ---
-## ✨ Fitur Baru yang Ditambahkan
+## ✨ Fitur Baru Terbaru & Fitur Offline Lengkap
 ### 🎮 Fitur Utama:
-- 📖 Alur cerita yang naik turun dengan twist mengejutkan
-- 🎯 Pilihan yang mempengaruhi akhir permainan dan tingkat stress
-- 🔍 Teka-teki investigasi yang menantang
-- 🎵 Suara ambien yang menegangkan untuk menambah suasana misteri
-- 📱 Dapat dimainkan secara offline tanpa koneksi internet
-- 🗣️ Semua teks dalam game menggunakan Bahasa Indonesia agar mudah dinikmati
-
-### ✨ Fitur Baru Terbaru:
 - ❤️ **Sistem Kesehatan & Stress**: Metrik permainan yang berubah berdasarkan peristiwa dalam game
 - 💡 **Sistem Petunjuk**: Gunakan buku catatan untuk mendapatkan petunjuk acak tentang permainan
 - 🧑🤝🧑 **Sistem Inventory Lengkap**: Simpan dan gunakan item yang ditemukan di hotel
 - 📜 **Sistem Log Quest**: Lacak semua quest aktif dan objective yang perlu diselesaikan
 - 💾 **Sistem Penyimpanan Permainan**: Simpan progres permainan dan lanjutkan kapan saja
 - 🔄 **Lebih dari 2 Akhir Permainan**: Tambahkan akhir rahasia dan akhir netral untuk meningkatkan replay value
+
+### 🔧 Fitur Offline Tambahan:
 - 💡 **Sistem Pencahayaan Dinamis**: Level cahaya yang berkurang seiring waktu, butuh sentuhan/baterai untuk melihat di area gelap
 - 🛠️ **Sistem Crafting Item**: Gabungkan item untuk membuat alat baru seperti sentuhan aktif, kamera rekaman, dan alat buka kunci
 - 🍸 **Lokasi Baru: Lounge Hotel**: Jelajahi area tambahan dengan petunjuk dan item rahasia
 - 👻 **Dialog Hantu yang Lebih Interaktif**: Beberapa opsi percakapan dengan hantu resepsionis
+- 🏆 **Sistem Achievement Offline**: 6 prestasi yang bisa didapatkan selama permainan (disimpan secara lokal)
+- ⚙️ **Menu Pengaturan**: Atur kecepatan teks, ukuran font, dan aktifkan/nonaktifkan auto-save
+- 🗺️ **Peta Hotel Offline**: Lihat semua lokasi hotel yang sudah dibuka dan gunakan quick travel
+- 🚶 **Quick Travel**: Berpindah antar lokasi yang sudah dibuka dengan cepat
+- 🎛️ **Auto-Save Otomatis**: Menyimpan progres setiap 5 menit secara otomatis
 
 ---
 ## 🎯 Quest Harian Otomatis Setiap Jam
 *(Fitur yang sudah tidak aktif di versi terbaru)*
 
 ---
-## Cara Menjalankan
+## 🚀 Cara Menjalankan
 1.  Clone repositori ini
 2.  Buka file `index.html` di browser apapun (tidak membutuhkan koneksi internet!)
-3.  Sesuaikan karakter kamu dan langsung mulai bermain!
+3.  Langsung mulai petualanganmu sebagai Luna!
 
 ---
-## Cara Bermain
-1.  Buka game dan langsung mulai petualanganmu sebagai Luna
-2.  Jelajahi hotel dan temukan petunjuk misteri
-3.  Gunakan item yang kamu temukan untuk memecahkan teka-teki
-4.  Kelola tingkat stress dan kesehatan karaktermu
+## 🎮 Cara Bermain
+1.  Jelajahi hotel dan temukan petunjuk misteri di setiap lokasi
+2.  Gunakan item yang kamu temukan untuk memecahkan teka-teki
+3.  Kelola tingkat stress dan kesehatan karaktermu dengan menghindari hantu dan situasi menegangkan
+4.  Akses menu game untuk melihat peta, prestasi, dan mengatur preferensi permainan
 5.  Cari cara untuk mengakhiri ritual gelap yang mengunci semua jiwa di hotel
+6.  Simpan progresmu kapan saja atau biarkan auto-save melakukannya untukmu
 
 ---
-## Kontribusi
+## 🎛️ Menu Game
+Tekan tombol ☰ Menu di sudut kiri atas layar untuk mengakses:
+- 🗺️ Lihat Peta Hotel dan quick travel antar lokasi
+- 🏆 Lihat semua prestasi yang sudah didapatkan
+- ⚙️ Ubah pengaturan permainan (kecepatan teks, ukuran font, auto-save)
+
+---
+## 🤝 Kontribusi
 Silakan lakukan fork dan kirim pull request jika ingin berkontribusi dalam mengembangkan game ini!
 
 ---
