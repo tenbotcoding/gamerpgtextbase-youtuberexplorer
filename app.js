@@ -245,7 +245,7 @@ function updateChoices(choices) {
 // Update UI
 function updateUI() {
     // Update Current Quest
-    currentQuestEl.textContent = `Quest: ${gameState.currentQuest || "Belum ada quest"`;
+    currentQuestEl.textContent = `Quest: ${gameState.currentQuest || "Belum ada quest"}`;
     
     // Update Inventory List
     inventoryList.innerHTML = '';
@@ -274,8 +274,9 @@ function enterHotel() {
         { text: "Periksa meja resepsionis", action: () => checkReceptionDesk() },
         { text: "Periksa kamera lama di dinding", action: () => checkOldCamera() },
         { text: "Naik tangga ke lantai atas", action: () => goUpStairs() },
-        { text: "Kunjungi Lounge Hotel", action: () => goToLounge() },
-        { text: 
+        { text: "Kunjungi Lounge Hotel", action: () => goToLounge() }
+    ]);
+}
 
 function callTeam() {
     gameState.stress = Math.min(100, gameState.stress + 20);
@@ -495,9 +496,11 @@ function randomJumpscare() {
         updateStory("💥 SUARA TERBERGAK! Sebuah bayangan muncul di depan kamu, kamu terkejut dan kehilangan 15 HP!");
         gameState.health = Math.max(0, gameState.health - 15);
         updateStats();
-        updateChoices([
-            { text: "Berlari ke luar hotel", action: () => runAway() },
-            { text: 
+    }
+}
+
+// Use Hint Item (Buku Catatan)
+function useHintItem() {
     const hintItems = ["Buku Catatan", "Buku Catatan Resepsionis"];
     const hasHintItem = hintItems.some(item => gameState.inventory.includes(item));
     
