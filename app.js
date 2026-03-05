@@ -660,6 +660,3 @@ function searchLoungeSofa() {
     ]);
 }
 
-// Update Light Level Over Time
-
-// Start light update loop when game starts
