@@ -56,6 +56,52 @@
                 <h3>📜 Quest Log</h3>
                 <ul id="quest-log"></ul>
             </div>
+
+            <!-- Area Game Menu -->
+            <div class="game-menu">
+                <button id="menu-btn" class="menu-btn">☰ Menu</button>
+                <div id="menu-panel" class="menu-panel">
+                    <button id="map-btn" class="menu-item-btn">🗺️ Lihat Peta Hotel</button>
+                    <button id="achievements-btn" class="menu-item-btn">🏆 Prestasi</button>
+                    <button id="settings-btn" class="menu-item-btn">⚙️ Pengaturan</button>
+                    <button id="close-menu-btn" class="menu-item-btn">❌ Tutup Menu</button>
+                </div>
+            </div>
+
+            <!-- Map Panel -->
+            <div id="map-panel" class="map-panel">
+                <h2>🗺️ Peta Hotel Grand Bali</h2>
+                <div id="map-content" class="map-content"></div>
+                <button id="close-map-btn" class="menu-item-btn">Kembali</button>
+            </div>
+
+            <!-- Achievements Panel -->
+            <div id="achievements-panel" class="achievements-panel">
+                <h2>🏆 Prestasi</h2>
+                <div id="achievements-list" class="achievements-list"></div>
+                <button id="close-achievements-btn" class="menu-item-btn">Kembali</button>
+            </div>
+
+            <!-- Settings Panel -->
+            <div id="settings-panel" class="settings-panel">
+                <h2>⚙️ Pengaturan</h2>
+                <div class="form-group">
+                    <label for="text-speed">Kecepatan Teks:</label>
+                    <input type="range" id="text-speed" min="100" max="1000" value="500">
+                    <span id="text-speed-display">Sedang</span>
+                </div>
+                <div class="form-group">
+                    <label for="font-size">Ukuran Font:</label>
+                    <input type="range" id="font-size" min="12" max="24" value="16">
+                    <span id="font-size-display">16px</span>
+                </div>
+                <div class="form-group">
+                    <label for="auto-save">Auto-Save:</label>
+                    <input type="checkbox" id="auto-save" checked>
+                </div>
+                <button id="save-settings-btn" class="menu-item-btn">Simpan Pengaturan</button>
+                <button id="close-settings-btn" class="menu-item-btn">Kembali</button>
+            </div>
         </main>
 
         <!-- Footer -->

@@ -3,7 +3,7 @@
 // Game State
 const gameState = {
     isPlaying: false,
-    currentScene: "start",
+    currentScene: "lobby",
     playerName: "Luna",
     health: 100,
     stress: 0,
@@ -11,9 +11,14 @@ const gameState = {
     inventory: [],
     questLog: [],
     completedQuests: new Set(),
+    unlockedLocations: new Set(["lobby"]),
     currentQuest: null,
     playthroughTime: 0,
     hintsUsed: 0,
+    autoSaveEnabled: true,
+    textSpeed: 500,
+    fontSize: 16,
+    achievements: [],
     craftingRecipes: {
         "Sentuhan Besar + Baterai": "Sentuhan Besar Aktif",
         "Kamera + Baterai": "Kamera Rekaman",
@@ -33,6 +38,26 @@ const resetBtn = document.getElementById('reset-btn');
 const healthFill = document.getElementById('health-fill');
 const stressFill = document.getElementById('stress-fill');
 const lightFill = document.getElementById('light-fill');
+const menuBtn = document.getElementById('menu-btn');
+const menuPanel = document.getElementById('menu-panel');
+const mapBtn = document.getElementById('map-btn');
+const mapPanel = document.getElementById('map-panel');
+const mapContent = document.getElementById('map-content');
+const closeMapBtn = document.getElementById('close-map-btn');
+const achievementsBtn = document.getElementById('achievements-btn');
+const achievementsPanel = document.getElementById('achievements-panel');
+const achievementsList = document.getElementById('achievements-list');
+const closeAchievementsBtn = document.getElementById('close-achievements-btn');
+const settingsBtn = document.getElementById('settings-btn');
+const settingsPanel = document.getElementById('settings-panel');
+const textSpeedSlider = document.getElementById('text-speed');
+const textSpeedDisplay = document.getElementById('text-speed-display');
+const fontSizeSlider = document.getElementById('font-size');
+const fontSizeDisplay = document.getElementById('font-size-display');
+const autoSaveCheckbox = document.getElementById('auto-save');
+const saveSettingsBtn = document.getElementById('save-settings-btn');
+const closeSettingsBtn = document.getElementById('close-settings-btn');
+const closeMenuBtn = document.getElementById('close-menu-btn');
 
 // Load Quests from quests.txt
 let allQuests = [];
@@ -41,6 +66,9 @@ let allQuests = [];
 async function init() {
     // Load quests
     await loadQuests();
+    
+    // Load saved settings
+    loadSettings();
     
     // Set default inventory items
     gameState.inventory.push("Kamera Video");
@@ -53,15 +81,101 @@ async function init() {
         loadGame();
     } else {
         startGame();
+        unlockAchievement("first_steps");
+    }
+    
+    // Start auto-save
+    if (gameState.autoSaveEnabled) {
+        setTimeout(autoSave, 300000);
     }
     
     // Event Listeners
     saveBtn.addEventListener('click', saveGame);
     loadBtn.addEventListener('click', loadGame);
     resetBtn.addEventListener('click', resetGame);
+    menuBtn.addEventListener('click', toggleMenu);
+    closeMenuBtn.addEventListener('click', toggleMenu);
+    mapBtn.addEventListener('click', showMap);
+    closeMapBtn.addEventListener('click', hideMap);
+    achievementsBtn.addEventListener('click', showAchievements);
+    closeAchievementsBtn.addEventListener('click', hideAchievements);
+    settingsBtn.addEventListener('click', showSettings);
+    closeSettingsBtn.addEventListener('click', hideSettings);
+    saveSettingsBtn.addEventListener('click', saveSettings);
+    textSpeedSlider.addEventListener('input', updateTextSpeedDisplay);
+    fontSizeSlider.addEventListener('input', updateFontSizeDisplay);
     
     updateUI();
 }
+
+// Menu Controls
+function toggleMenu() {
+    menuPanel.style.display = menuPanel.style.display === 'none' ? 'flex' : 'none';
+}
+
+function showMap() {
+    updateMapDisplay();
+    mapPanel.style.display = 'block';
+    toggleMenu();
+}
+
+function hideMap() {
+    mapPanel.style.display = 'none';
+}
+
+function showAchievements() {
+    updateAchievementsDisplay();
+    achievementsPanel.style.display = 'block';
+    toggleMenu();
+}
+
+function hideAchievements() {
+    achievementsPanel.style.display = 'none';
+}
+
+function showSettings() {
+    updateSettingsDisplay();
+    settingsPanel.style.display = 'block';
+    toggleMenu();
+}
+
+function hideSettings() {
+    settingsPanel.style.display = 'none';
+}
+
+function saveSettings() {
+    gameState.textSpeed = parseInt(textSpeedSlider.value);
+    gameState.fontSize = parseInt(fontSizeSlider.value);
+    gameState.autoSaveEnabled = autoSaveCheckbox.checked;
+    updateTextSpeedDisplay();
+    updateFontSizeDisplay();
+    saveGame();
+    hideSettings();
+    updateStory("⚙️ Pengaturan berhasil disimpan!");
+}
+
+// Load saved settings
+function loadSettings() {
+    const savedSettings = localStorage.getItem('hotelRPGSettings');
+    if (savedSettings) {
+        const parsedSettings = JSON.parse(savedSettings);
+        gameState.textSpeed = parsedSettings.textSpeed || 500;
+        gameState.fontSize = parsedSettings.fontSize || 16;
+        gameState.autoSaveEnabled = parsedSettings.autoSaveEnabled !== undefined ? parsedSettings.autoSaveEnabled : true;
+    }
+}
+
+// Override saveGame to also save settings
+const originalSaveGame = saveGame;
+saveGame = function() {
+    originalSaveGame();
+    const settingsData = {
+        textSpeed: gameState.textSpeed,
+        fontSize: gameState.fontSize,
+        autoSaveEnabled: gameState.autoSaveEnabled
+    };
+    localStorage.setItem('hotelRPGSettings', JSON.stringify(settingsData));
+};
 
 
 
@@ -153,14 +267,15 @@ function updateUI() {
 // Game Scenes
 function enterHotel() {
     gameState.stress = Math.min(100, gameState.stress + 10);
+    gameState.unlockedLocations.add("lobby");
     updateStats();
     updateStory("Kamu mendorong pintu hotel, dan pintu itu terbuka dengan suara creaking yang keras. Di dalam, lampu gantung berdebu bergoyang di aula utama. Udara lembab dan penuh dengan suara bisikan lemah. Kamu melihat meja resepsionis yang tertutup debu, dan buku catatan di atasnya.");
     updateChoices([
         { text: "Periksa meja resepsionis", action: () => checkReceptionDesk() },
         { text: "Periksa kamera lama di dinding", action: () => checkOldCamera() },
-        { text: "Naik tangga ke lantai atas", action: () => goUpStairs() }
-    ]);
-}
+        { text: "Naik tangga ke lantai atas", action: () => goUpStairs() },
+        { text: "Kunjungi Lounge Hotel", action: () => goToLounge() },
+        { text: 
 
 function callTeam() {
     gameState.stress = Math.min(100, gameState.stress + 20);
@@ -198,6 +313,132 @@ function useSelectedItem() {
     }));
     choices.push({ text: "Kembali", action: () => checkInventory() });
     updateChoices(choices);
+}
+
+// Achievement System
+const achievementsListData = [
+    {
+        id: "first_steps",
+        name: "Langkah Pertama",
+        description: "Memulai permainan untuk pertama kalinya",
+        unlocked: false,
+        icon: "👣"
+    },
+    {
+        id: "hotel_explorer",
+        name: "Penjelajah Hotel",
+        description: "Membuka 5 lokasi berbeda di hotel",
+        unlocked: false,
+        icon: "🗺️"
+    },
+    {
+        id: "craft_master",
+        name: "Tukang Kayu",
+        description: "Membuat 3 item berbeda dengan sistem crafting",
+        unlocked: false,
+        icon: "🛠️"
+    },
+    {
+        id: "survivor",
+        name: "Selamat",
+        description: "Menyelesaikan akhir permainan bahagia",
+        unlocked: false,
+        icon: "✅"
+    },
+    {
+        id: "ghost_whisperer",
+        name: "Pendengar Hantu",
+        description: "Berbicara dengan hantu resepsionis",
+        unlocked: false,
+        icon: "👻"
+    },
+    {
+        id: "collector",
+        name: "Pengumpul",
+        description: "Mengumpulkan 10 item berbeda",
+        unlocked: false,
+        icon: "🎒"
+    }
+];
+
+// Unlock Achievement
+function unlockAchievement(achievementId) {
+    const achievement = achievementsListData.find(a => a.id === achievementId);
+    if (achievement && !achievement.unlocked) {
+        achievement.unlocked = true;
+        gameState.achievements.push(achievementId);
+        updateStory(`🏆 Prestasi Baru Ditemukan: ${achievement.icon} ${achievement.name}!`);
+        saveGame();
+    }
+}
+
+// Update Achievements Display
+function updateAchievementsDisplay() {
+    achievementsList.innerHTML = '';
+    achievementsListData.forEach(achievement => {
+        const isUnlocked = gameState.achievements.includes(achievement.id) || achievement.unlocked;
+        const achievementEl = document.createElement('div');
+        achievementEl.className = `achievement-item ${isUnlocked ? '' : 'achievement-locked'}`;
+        achievementEl.innerHTML = `
+            <div style="font-size: 2rem">${achievement.icon}</div>
+            <h4 style="color: #e94560; margin: 0.5rem 0">${achievement.name}</h4>
+            <p style="color: #e9e9e9; font-size: 0.9rem">${achievement.description}</p>
+        `;
+        achievementsList.appendChild(achievementEl);
+    });
+}
+
+// Quick Travel to Location
+function quickTravel(locationName, sceneFunction) {
+    gameState.currentScene = locationName;
+    sceneFunction();
+    gameState.unlockedLocations.add(locationName);
+    unlockAchievement("hotel_explorer");
+    checkMenuVisibility();
+}
+
+// Update Hotel Map Display
+function updateMapDisplay() {
+    const mapText = `
+🏨 HOTEL GRAND BALI TERBENGKALAI
+==================================
+📍 Lobby Utama (Dibuka Awal)
+  ↳ Aula Resepsionis
+  ↳ Lounge Hotel
+  ↳ Tangga ke Lantai 1
+
+🏷️ Lokasi yang Dibuka:
+${Array.from(gameState.unlockedLocations).map(loc => `- ${loc.replace('_', ' ').toUpperCase()}`).join('\n')}
+
+Gunakan quick travel untuk berpindah antar lokasi!
+    `;
+    mapContent.textContent = mapText;
+}
+
+// Update Settings Display
+function updateSettingsDisplay() {
+    textSpeedSlider.value = gameState.textSpeed;
+    fontSizeSlider.value = gameState.fontSize;
+    autoSaveCheckbox.checked = gameState.autoSaveEnabled;
+    updateTextSpeedDisplay();
+    updateFontSizeDisplay();
+}
+
+function updateTextSpeedDisplay() {
+    textSpeedDisplay.textContent = gameState.textSpeed <= 200 ? "Cepat" : gameState.textSpeed <= 500 ? "Sedang" : "Lambat";
+}
+
+function updateFontSizeDisplay() {
+    fontSizeDisplay.textContent = `${gameState.fontSize}px`;
+    document.body.style.fontSize = `${gameState.fontSize}px`;
+}
+
+// Auto-save function
+function autoSave() {
+    if (gameState.autoSaveEnabled && gameState.isPlaying) {
+        saveGame();
+        setTimeout(autoSave, 300000); // Auto-save every 5 minutes
+    }
 }
 
 // Use Specific Item
@@ -309,14 +550,15 @@ function loadGame() {
         gameState.isPlaying = parsedData.isPlaying;
         gameState.currentScene = parsedData.currentScene;
         gameState.playerName = parsedData.playerName || "Luna";
-        gameState.playerBackstory = parsedData.playerBackstory || "investigator";
-        gameState.startingItem = parsedData.startingItem || "camera";
         gameState.health = parsedData.health || 100;
         gameState.stress = parsedData.stress || 0;
+        gameState.lightLevel = parsedData.lightLevel || 100;
         gameState.inventory = parsedData.inventory || [];
         gameState.questLog = parsedData.questLog || [];
         gameState.completedQuests = new Set(parsedData.completedQuests || []);
+        gameState.unlockedLocations = new Set(parsedData.unlockedLocations || ["lobby"]);
         gameState.hintsUsed = parsedData.hintsUsed || 0;
+        gameState.achievements = parsedData.achievements || [];
         updateUI();
         updateStats();
         updateStory("Permainan dimuat ulang!");
